@@ -433,7 +433,7 @@ def main():
     # Sidebar navigation
     with st.sidebar:
         st.markdown("### 🧭 Navigation")
-        selected = streamlit_option_menu(
+        selected = option_menu(
             menu_title=None,
             options=["Movie Recommender", "Feedback", "About Us"],
             icons=["film", "chat-dots", "info-circle"],
