@@ -28,7 +28,7 @@ def load_css():
     
     /* Header Styles */
     .header-container {
-        background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+        background: linear-gradient(135deg, #FF4B4B 0%, #FF4B4B 100%);
         padding: 1.5rem 2rem;
         border-radius: 15px;
         margin-bottom: 2rem;
@@ -99,13 +99,13 @@ def load_css():
         font-size: 1.3rem;
         font-weight: 600;
         margin-bottom: 1rem;
-        border-bottom: 2px solid #ff6b35;
+        border-bottom: 2px solid #FF4B4B;
         padding-bottom: 0.5rem;
     }
     
     /* Button Styles */
     .stButton > button {
-        background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+        background: linear-gradient(135deg, #FF4B4B 0%, #FF4B4B 100%);
         color: white;
         border: none;
         border-radius: 25px;
@@ -113,12 +113,12 @@ def load_css():
         font-weight: 600;
         font-size: 1rem;
         transition: all 0.3s ease;
-        box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+        box-shadow: 0 4px 15px rgba(255, 75, 75, 0.3);
     }
     
     .stButton > button:hover {
         transform: translateY(-2px);
-        box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
+        box-shadow: 0 6px 20px rgba(255, 75, 75, 0.4);
     }
     
     /* Selectbox Styles */
@@ -129,8 +129,8 @@ def load_css():
     }
     
     .stSelectbox > div > div:focus-within {
-        border-color: #ff6b35;
-        box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.1);
+        border-color: #FF4B4B;
+        box-shadow: 0 0 0 3px rgba(255, 75, 75, 0.1);
     }
     
     /* Theme Toggle */
@@ -174,7 +174,7 @@ def load_css():
         background: #f8f9fa;
         padding: 1.5rem;
         border-radius: 15px;
-        border-left: 4px solid #ff6b35;
+        border-left: 4px solid #FF4B4B;
     }
     
     /* About Section Styles */
@@ -198,7 +198,7 @@ def load_css():
     }
     
     .feature-title {
-        color: #ff6b35;
+        color: #FF4B4B;
         font-weight: 600;
         font-size: 1.1rem;
         margin-bottom: 0.3rem;
@@ -215,7 +215,7 @@ def load_css():
         padding: 1.5rem;
         border-radius: 15px;
         margin: 1.5rem 0;
-        border-left: 4px solid #ff6b35;
+        border-left: 4px solid #FF4B4B;
     }
     
     /* Loading Animation */
@@ -228,7 +228,7 @@ def load_css():
     
     .loading-spinner {
         border: 4px solid #f3f3f3;
-        border-top: 4px solid #ff6b35;
+        border-top: 4px solid #FF4B4B;
         border-radius: 50%;
         width: 40px;
         height: 40px;
@@ -273,11 +273,11 @@ def fetch_poster(movie_title):
     
     except requests.exceptions.Timeout:
         st.error("Connection to the movie database timed out. Please check your internet connection and try again.")
-        return "https://via.placeholder.com/300x450/ff6b35/white?text=Error"
+        return "https://via.placeholder.com/300x450/FF4B4B/white?text=Error"
     
     except requests.exceptions.RequestException as e:
         st.error(f"An error occurred while fetching the poster: {e}")
-        return "https://via.placeholder.com/300x450/ff6b35/white?text=Error"
+        return "https://via.placeholder.com/300x450/FF4B4B/white?text=Error"
 
 def recommend(movie):
     try:
@@ -563,23 +563,50 @@ def render_about_section():
     # Team Section
     st.markdown("### 👥 Our Team")
     st.markdown("""
-    <div class="team-section">
-        <p>CineMatch is developed by a passionate team of data scientists, machine learning engineers, and movie enthusiasts dedicated to revolutionizing the way people discover films.</p>
-        
-        <h4>🌟 Meet Our Core Team:</h4>
-        <ul>
-            <li><strong>Data Science Lead:</strong> Specializes in recommendation algorithms and machine learning</li>
-            <li><strong>Frontend Developer:</strong> Creates intuitive and beautiful user interfaces</li>
-            <li><strong>Backend Engineer:</strong> Ensures robust and scalable system architecture</li>
-            <li><strong>UI/UX Designer:</strong> Crafts seamless user experiences across all devices</li>
-        </ul>
-        
-        <p>We believe in the power of personalized recommendations to enhance your movie-watching experience and help you discover hidden gems you might otherwise miss. Our mission is to make movie discovery effortless, enjoyable, and accurate through the power of artificial intelligence and comprehensive data analysis.</p>
-    </div>
-    """, unsafe_allow_html=True)
+    CineMatch is developed by a passionate team of data scientists, machine learning engineers, and movie enthusiasts dedicated to revolutionizing the way people discover films.
+    
+    **🌟 Meet Our Core Team:**
+    
+    - **Data Science Lead:** Specializes in recommendation algorithms and machine learning
+    - **Frontend Developer:** Creates intuitive and beautiful user interfaces
+    - **Backend Engineer:** Ensures robust and scalable system architecture
+    - **UI/UX Designer:** Crafts seamless user experiences across all devices
+    
+    We believe in the power of personalized recommendations to enhance your movie-watching experience and help you discover hidden gems you might otherwise miss. Our mission is to make movie discovery effortless, enjoyable, and accurate through the power of artificial intelligence and comprehensive data analysis.
+    """)
     
     # Future Plans
     st.markdown("### 🔮 Future Plans")
+    st.markdown("""
+    We're constantly working to enhance CineMatch and bring you the best movie discovery experience. Here's what we have planned:
+    
+    **🎯 Short-term Goals (Next 3-6 months):**
+    - **Enhanced Personalization:** User accounts with watch history and preference learning
+    - **Advanced Filtering:** Filter recommendations by genre, year, rating, and cast
+    - **Mobile App:** Native iOS and Android applications for on-the-go recommendations
+    - **Social Features:** Share recommendations with friends and create watchlists
+    
+    **🚀 Medium-term Goals (6-12 months):**
+    - **AI Chat Assistant:** Interactive movie recommendation chatbot
+    - **Voice Search:** Voice-activated movie search and recommendations
+    - **Multi-language Support:** Expand to support multiple languages and regional content
+    - **Advanced Analytics:** Detailed insights into your movie preferences and trends
+    
+    **🌟 Long-term Vision (1+ years):**
+    - **Predictive Recommendations:** AI that predicts what you'll want to watch before you know it
+    - **Virtual Reality Integration:** Immersive movie discovery experiences
+    - **Global Content:** Access to international films and regional cinema
+    - **Community Features:** Movie clubs, discussion forums, and user-generated content
+    - **Integration Partnerships:** Connect with streaming platforms for seamless watching
+    
+    **🔬 Research & Development:**
+    - **Advanced ML Models:** Implementing state-of-the-art recommendation algorithms
+    - **Sentiment Analysis:** Understanding emotional responses to movies
+    - **Cross-platform Sync:** Seamless experience across all your devices
+    - **Accessibility Features:** Making CineMatch accessible to users with disabilities
+    
+    We're excited to bring these features to life and continue revolutionizing how people discover and enjoy movies!
+    """)
 
 def main():
     # Load CSS
@@ -607,7 +634,7 @@ def main():
             default_index=0,
             styles={
                 "container": {"padding": "0!important", "background-color": "transparent"},
-                "icon": {"color": "#ff6b35", "font-size": "18px"},
+                "icon": {"color": "#FF4B4B", "font-size": "18px"},
                 "nav-link": {
                     "font-size": "16px",
                     "text-align": "left",
@@ -616,7 +643,7 @@ def main():
                     "border-radius": "10px",
                     "margin-bottom": "5px"
                 },
-                "nav-link-selected": {"background-color": "#ff6b35"},
+                "nav-link-selected": {"background-color": "#FF4B4B"},
             }
         )
     
