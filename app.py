@@ -2,7 +2,8 @@ import pickle
 import streamlit as st
 import requests
 import pandas as pd
-from streamlit_option_menu import streamlit_option_menu
+# This is CORRECT
+from streamlit_option_menu import option_menu
 import base64
 
 # Page configuration
