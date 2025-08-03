@@ -28,7 +28,7 @@ def load_css():
     
     /* Header Styles */
     .header-container {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
         padding: 1.5rem 2rem;
         border-radius: 15px;
         margin-bottom: 2rem;
@@ -99,13 +99,13 @@ def load_css():
         font-size: 1.3rem;
         font-weight: 600;
         margin-bottom: 1rem;
-        border-bottom: 2px solid #667eea;
+        border-bottom: 2px solid #ff6b35;
         padding-bottom: 0.5rem;
     }
     
     /* Button Styles */
     .stButton > button {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
         color: white;
         border: none;
         border-radius: 25px;
@@ -113,12 +113,12 @@ def load_css():
         font-weight: 600;
         font-size: 1rem;
         transition: all 0.3s ease;
-        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
     }
     
     .stButton > button:hover {
         transform: translateY(-2px);
-        box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
     }
     
     /* Selectbox Styles */
@@ -129,8 +129,8 @@ def load_css():
     }
     
     .stSelectbox > div > div:focus-within {
-        border-color: #667eea;
-        box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        border-color: #ff6b35;
+        box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.1);
     }
     
     /* Theme Toggle */
@@ -174,27 +174,48 @@ def load_css():
         background: #f8f9fa;
         padding: 1.5rem;
         border-radius: 15px;
-        border-left: 4px solid #667eea;
+        border-left: 4px solid #ff6b35;
     }
     
     /* About Section Styles */
     .about-content {
         line-height: 1.6;
         color: #555;
+        margin-bottom: 1.5rem;
     }
     
     .feature-item {
-        display: flex;
-        align-items: center;
         margin-bottom: 0.8rem;
-        padding: 0.5rem;
-        background: #f8f9fa;
-        border-radius: 8px;
+        padding: 1rem 0;
+        border-bottom: 1px solid #eee;
     }
     
     .feature-icon {
-        margin-right: 0.8rem;
-        font-size: 1.2rem;
+        font-size: 1.5rem;
+        margin-right: 1rem;
+        display: inline-block;
+        width: 2rem;
+    }
+    
+    .feature-title {
+        color: #ff6b35;
+        font-weight: 600;
+        font-size: 1.1rem;
+        margin-bottom: 0.3rem;
+    }
+    
+    .feature-description {
+        color: #666;
+        font-size: 0.95rem;
+        line-height: 1.4;
+    }
+    
+    .team-section {
+        background: #f8f9fa;
+        padding: 1.5rem;
+        border-radius: 15px;
+        margin: 1.5rem 0;
+        border-left: 4px solid #ff6b35;
     }
     
     /* Loading Animation */
@@ -207,7 +228,7 @@ def load_css():
     
     .loading-spinner {
         border: 4px solid #f3f3f3;
-        border-top: 4px solid #667eea;
+        border-top: 4px solid #ff6b35;
         border-radius: 50%;
         width: 40px;
         height: 40px;
@@ -252,11 +273,11 @@ def fetch_poster(movie_title):
     
     except requests.exceptions.Timeout:
         st.error("Connection to the movie database timed out. Please check your internet connection and try again.")
-        return "https://via.placeholder.com/300x450/667eea/white?text=Error"
+        return "https://via.placeholder.com/300x450/ff6b35/white?text=Error"
     
     except requests.exceptions.RequestException as e:
         st.error(f"An error occurred while fetching the poster: {e}")
-        return "https://via.placeholder.com/300x450/667eea/white?text=Error"
+        return "https://via.placeholder.com/300x450/ff6b35/white?text=Error"
 
 def recommend(movie):
     try:
@@ -448,12 +469,12 @@ def render_about_section():
     st.markdown('<div class="section-title">ℹ️ About CineMatch</div>', unsafe_allow_html=True)
     
     # Mission Statement
+    st.markdown("### 🎯 Our Mission")
     st.markdown("""
-    <div class="about-content">
-        <h3>🎯 Our Mission</h3>
-        <p><strong>CineMatch</strong> is an intelligent movie recommendation system designed to revolutionize how you discover films. We believe everyone deserves to find their perfect movie match, and our AI-powered platform makes that possible through advanced machine learning and comprehensive movie analysis.</p>
-    </div>
-    """, unsafe_allow_html=True)
+    **CineMatch** is an intelligent movie recommendation system designed to revolutionize how you discover films. 
+    We believe everyone deserves to find their perfect movie match, and our AI-powered platform makes that possible 
+    through advanced machine learning and comprehensive movie analysis.
+    """)
     
     # Key Features
     st.markdown("### 🚀 Key Features")
@@ -470,34 +491,28 @@ def render_about_section():
         ("🛡️", "Privacy Focused", "No personal data collection - recommendations based purely on movie selection")
     ]
     
-    # Display features in a grid layout
-    col1, col2 = st.columns(2)
-    for i, (icon, title, description) in enumerate(features):
-        with col1 if i % 2 == 0 else col2:
-            st.markdown(f"""
-            <div class="feature-item">
-                <span class="feature-icon">{icon}</span>
-                <div>
-                    <strong>{title}</strong><br>
-                    <small>{description}</small>
-                </div>
-            </div>
-            """, unsafe_allow_html=True)
+    # Display features in a clean list format
+    for icon, title, description in features:
+        st.markdown(f"""
+        <div class="feature-item">
+            <span class="feature-icon">{icon}</span>
+            <div class="feature-title">{title}</div>
+            <div class="feature-description">{description}</div>
+        </div>
+        """, unsafe_allow_html=True)
     
     # How It Works
     st.markdown("### 🔬 How It Works")
     st.markdown("""
-    <div class="about-content">
-        <p>Our recommendation engine uses sophisticated <strong>content-based filtering</strong> to analyze multiple movie characteristics:</p>
-        <ul>
-            <li><strong>Genre Analysis:</strong> Identifies similar genres and sub-genres</li>
-            <li><strong>Cast & Crew:</strong> Considers actors, directors, and production teams</li>
-            <li><strong>Plot Keywords:</strong> Analyzes story themes and plot elements</li>
-            <li><strong>Release Era:</strong> Considers the time period and cultural context</li>
-        </ul>
-        <p>When you select a movie you enjoyed, our algorithm calculates similarity scores with all other movies in our database and presents you with the top 5 most similar recommendations.</p>
-    </div>
-    """, unsafe_allow_html=True)
+    Our recommendation engine uses sophisticated **content-based filtering** to analyze multiple movie characteristics:
+    
+    - **Genre Analysis:** Identifies similar genres and sub-genres
+    - **Cast & Crew:** Considers actors, directors, and production teams
+    - **Plot Keywords:** Analyzes story themes and plot elements
+    - **Release Era:** Considers the time period and cultural context
+    
+    When you select a movie you enjoyed, our algorithm calculates similarity scores with all other movies in our database and presents you with the top 5 most similar recommendations.
+    """)
     
     # Technology Stack
     st.markdown("### 🛠️ Technology Stack")
@@ -528,15 +543,12 @@ def render_about_section():
     # Data Source
     st.markdown("### 📊 Data Sources")
     st.markdown("""
-    <div class="about-content">
-        <p>Our recommendations are powered by comprehensive movie data from:</p>
-        <ul>
-            <li><strong>The Movie Database (TMDb):</strong> Primary source for movie metadata, including genres, cast, crew, and plot information</li>
-            <li><strong>OMDB API:</strong> High-quality movie posters and additional movie details</li>
-            <li><strong>Curated Dataset:</strong> Carefully processed and cleaned dataset of over 4,800 movies</li>
-        </ul>
-    </div>
-    """, unsafe_allow_html=True)
+    Our recommendations are powered by comprehensive movie data from:
+    
+    - **The Movie Database (TMDb):** Primary source for movie metadata, including genres, cast, crew, and plot information
+    - **OMDB API:** High-quality movie posters and additional movie details
+    - **Curated Dataset:** Carefully processed and cleaned dataset of over 4,800 movies
+    """)
     
     # Statistics
     st.markdown("### 📈 Platform Statistics")
@@ -551,10 +563,10 @@ def render_about_section():
     # Team Section
     st.markdown("### 👥 Our Team")
     st.markdown("""
-    <div class="about-content">
+    <div class="team-section">
         <p>CineMatch is developed by a passionate team of data scientists, machine learning engineers, and movie enthusiasts dedicated to revolutionizing the way people discover films.</p>
         
-        <h4>Meet Our Core Team:</h4>
+        <h4>🌟 Meet Our Core Team:</h4>
         <ul>
             <li><strong>Data Science Lead:</strong> Specializes in recommendation algorithms and machine learning</li>
             <li><strong>Frontend Developer:</strong> Creates intuitive and beautiful user interfaces</li>
@@ -568,18 +580,6 @@ def render_about_section():
     
     # Future Plans
     st.markdown("### 🔮 Future Plans")
-    st.markdown("""
-    <div class="about-content">
-        <p>We're constantly working to improve CineMatch with exciting new features:</p>
-        <ul>
-            <li><strong>User Accounts:</strong> Save your favorite movies and get personalized recommendations</li>
-            <li><strong>Advanced Filtering:</strong> Filter by year, rating, language, and more</li>
-            <li><strong>Social Features:</strong> Share recommendations with friends and family</li>
-            <li><strong>Movie Reviews:</strong> Read and write reviews for movies</li>
-            <li><strong>Watchlist Management:</strong> Create and manage your movie watchlist</li>
-        </ul>
-    </div>
-    """, unsafe_allow_html=True)
 
 def main():
     # Load CSS
@@ -607,7 +607,7 @@ def main():
             default_index=0,
             styles={
                 "container": {"padding": "0!important", "background-color": "transparent"},
-                "icon": {"color": "#667eea", "font-size": "18px"},
+                "icon": {"color": "#ff6b35", "font-size": "18px"},
                 "nav-link": {
                     "font-size": "16px",
                     "text-align": "left",
@@ -616,7 +616,7 @@ def main():
                     "border-radius": "10px",
                     "margin-bottom": "5px"
                 },
-                "nav-link-selected": {"background-color": "#667eea"},
+                "nav-link-selected": {"background-color": "#ff6b35"},
             }
         )
     
